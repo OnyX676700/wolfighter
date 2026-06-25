@@ -1387,6 +1387,493 @@ nav a:last-child.active {
 }
 
 
+/* ===========================
+   CONTATTI & ORARI — dark theme
+   =========================== */
+
+/* HERO */
+.contatti-hero {
+  position: relative;
+  min-height: 55vh;
+  background-image: url('/img/palestra.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contatti-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.80) 40%, rgba(0,0,0,0.4));
+  z-index: 0;
+}
+
+.contatti-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.contatti-hero-eyebrow {
+  font-family: var(--font-syne), sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.contatti-hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--red);
+}
+
+.contatti-hero-title {
+  font-family: var(--font-syne), sans-serif;
+  font-size: 75px;
+  font-weight: 800;
+  color: var(--cream);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0;
+  line-height: 1;
+}
+
+/* INTRO */
+.contatti-intro {
+  padding: 60px 40px;
+  text-align: center;
+  background: #121212;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.contatti-intro p {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(244,241,234,0.6);
+  margin: 0 auto;
+  max-width: 680px;
+}
+
+/* CONTATTI + FORM */
+.contatti-main {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 80px;
+  padding: 80px clamp(1.5rem, 8vw, 8rem);
+  background: #1a1a1a;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+@media (max-width: 768px) {
+  .contatti-main {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 50px 24px;
+  }
+}
+
+/* INFO COLONNA SX */
+.contatti-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.contatti-info-block {
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.contatti-info-block:first-child {
+  padding-top: 0;
+}
+
+.contatti-info-block:last-child {
+  border-bottom: none;
+}
+
+.contatti-info-block h2 {
+  font-family: var(--font-syne), sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin: 0 0 10px;
+}
+
+.contatti-info-block a {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 1.05rem;
+  color: var(--cream);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contatti-info-block a:hover {
+  color: var(--red);
+}
+
+.contatti-social {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.contatti-social a {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.04);
+  color: rgba(244,241,234,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.25s;
+}
+
+.contatti-social a:hover {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+  transform: translateY(-3px);
+}
+
+/* FORM */
+.contatti-form-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.contatti-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contatti-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 480px) {
+  .contatti-form-row { grid-template-columns: 1fr; }
+}
+
+.contatti-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contatti-form-group label {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.contatti-form-group input,
+.contatti-form-group textarea {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-family: var(--font-dm-sans), sans-serif;
+  color: var(--cream);
+  transition: border-color 0.2s, background 0.2s;
+  resize: vertical;
+}
+
+.contatti-form-group input::placeholder,
+.contatti-form-group textarea::placeholder {
+  color: rgba(244,241,234,0.25);
+}
+
+.contatti-form-group input:focus,
+.contatti-form-group textarea:focus {
+  outline: none;
+  border-color: var(--red);
+  background: rgba(200,29,37,0.06);
+}
+
+.contatti-form-btn {
+  align-self: flex-start;
+  background: var(--red);
+  color: var(--cream);
+  border: none;
+  padding: 0.85rem 2.25rem;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.contatti-form-btn:hover {
+  background: #a01520;
+  transform: translateY(-1px);
+}
+
+.contatti-form-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem;
+  text-align: center;
+  color: var(--red);
+}
+
+.contatti-form-success i {
+  font-size: 3rem;
+}
+
+.contatti-form-success p {
+  font-family: var(--font-dm-sans), sans-serif;
+  color: var(--cream);
+  font-size: 1.05rem;
+}
+
+/* MAPPA */
+.contatti-mappa {
+  padding: 80px clamp(1.5rem, 8vw, 8rem);
+  background: #121212;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.contatti-mappa-eyebrow {
+  font-family: var(--font-syne), sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 16px;
+}
+
+.contatti-mappa-testo {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 1.1rem;
+  color: rgba(244,241,234,0.6);
+  margin-bottom: 8px;
+}
+
+.contatti-mappa-indirizzo {
+  font-family: var(--font-syne), sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--cream);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2.5rem;
+}
+
+.contatti-mappa-embed {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* ORARI */
+.contatti-orari {
+  padding: 80px clamp(1.5rem, 8vw, 8rem);
+  background: #1a1a1a;
+}
+
+.contatti-orari + .contatti-orari {
+  padding-top: 0;
+}
+
+.contatti-orari-titolo {
+  font-family: var(--font-syne), sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  color: var(--cream);
+  text-align: center;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.contatti-orari-titolo span {
+  color: var(--red);
+}
+
+.contatti-table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.contatti-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  min-width: 560px;
+}
+
+.contatti-table thead tr {
+  border-bottom: 2px solid var(--red);
+  background: rgba(200,29,37,0.08);
+}
+
+.contatti-table th {
+  font-family: var(--font-syne), sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--cream);
+  padding: 1rem 1.25rem;
+  text-align: center;
+}
+
+.contatti-table th:first-child {
+  text-align: left;
+}
+
+.contatti-table td {
+  padding: 0.7rem 1.25rem;
+  text-align: center;
+  color: var(--red);
+  font-family: var(--font-dm-sans), sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+}
+
+.contatti-table td.ora {
+  text-align: left;
+  color: rgba(244,241,234,0.4);
+  font-weight: 400;
+  font-size: 0.85rem;
+}
+
+.contatti-table tr.row-even {
+  background: rgba(255,255,255,0.03);
+}
+
+.contatti-table tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: background 0.15s;
+}
+
+.contatti-table tbody tr:hover {
+  background: rgba(200,29,37,0.07);
+}
+
+/* BODY BUILDING */
+.contatti-bodybuilding {
+  padding: 80px clamp(1.5rem, 8vw, 8rem);
+  background: #121212;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.contatti-bodybuilding h2 {
+  font-family: var(--font-syne), sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 800;
+  color: var(--cream);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 2rem;
+}
+
+.contatti-bodybuilding ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 2.5rem;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contatti-bodybuilding ul li {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 1rem;
+  color: rgba(244,241,234,0.6);
+  line-height: 1.6;
+}
+
+.contatti-bodybuilding ul li strong {
+  color: var(--cream);
+  font-weight: 700;
+}
+
+.contatti-bb-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.contatti-bb-footer span {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 0.9rem;
+  color: rgba(244,241,234,0.35);
+  letter-spacing: 0.5px;
+}
+
+.contatti-bb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--red);
+  color: var(--cream);
+  padding: 0.7rem 1.75rem;
+  border-radius: 4px;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.contatti-bb-btn:hover {
+  background: #a01520;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .contatti-intro { padding: 40px 24px; }
+  .contatti-mappa { padding: 50px 24px; }
+  .contatti-orari { padding: 50px 24px; }
+  .contatti-bodybuilding { padding: 50px 24px; }
+}
+
+
 /* ============================================================
    FOOTER
 ============================================================ */

@@ -43,9 +43,6 @@ export default function Footer() {
             <a href="https://www.facebook.com/emanuele.fatta" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <i className="fa-brands fa-facebook-f" aria-hidden="true" />
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-              <i className="fa-brands fa-tiktok" aria-hidden="true" />
-            </a>
             <a href="https://api.whatsapp.com/send/?phone=3337754798&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
               <i className="fa-brands fa-whatsapp" aria-hidden="true" />
             </a>
