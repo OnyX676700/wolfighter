@@ -1,65 +1,145 @@
-import Image from "next/image";
+import Link from 'next/link';
+import DisciplineCarousel from '@/components/DisciplineCarousel';
+import Tecnici from '@/components/Tecnici';
+import PercheScegliere from '@/components/Perchescegliere';
 
-export default function Home() {
+const disciplineCourses = [
+  {
+    title: 'Muay Thai',
+    tagline: '✦ L\'arte delle otto membra. Tradizione, colpi devastanti e disciplina spirituale.',
+    image: '/img/wetransfer_foto-evento_2026-03-30_0714/muay-thai.png',
+    backgroundPosition: 'center 20%',
+  },
+  {
+    title: 'Kickboxing',
+    tagline: '✦ Ritmo, esplosività e coordinazione. Un mix letale di pugni e calci.',
+    image: '/img/wetransfer_foto-evento_2026-03-30_0714/kickboxing.png',
+  },
+  {
+    title: 'Pugilato',
+    tagline: '✦ La Noble Art. Precisione millimetrica, gioco di gambe e pura strategia sul ring.',
+    image: '/img/boxe.png',
+    backgroundPosition: 'center 20%',
+  },
+  {
+    title: 'MMA',
+    tagline: '✦ Combattimento a 360°. L\'evoluzione finale dello striking e della lotta a terra.',
+    image: '/img/wetransfer_foto-evento_2026-03-30_0714/mma.png',
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <>
+      {/* SEZIONE HERO */}
+      <section className="hero">
+        <div className="hero-content">
+          <div className="hero-eyebrow-row">
+            <i className="fa-solid fa-hand-fist" aria-hidden="true" />
+            <span className="hero-eyebrow">Palestra di Boxe — Trapani</span>
+          </div>
+          <h1 className="hero-title">
+            Wolfighter<br />Boxing
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="hero-text">
+            <strong>Libera il lupo che è in te.</strong>{' '}
+            Più di un allenamento, una trasformazione.
+            Sfida i tuoi limiti attraverso l&apos;intensità di Boxe, Kickboxing e Muay Thai.
+            Forgia il tuo corpo, allena la tua mente e unisciti al branco.
           </p>
+          <Link href="/corsi" className="hero-cta">
+            Scopri i corsi <i className="fa-solid fa-arrow-right" aria-hidden="true" />
+          </Link>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div
+          className="hero-image"
+          style={{ backgroundImage: "url('/img/felpa.jpg')" }}
+          role="img"
+          aria-label="Atleta Wolfighter Boxing in allenamento"
+        />
+      </section>
+
+      {/* SEZIONE CAROUSEL */}
+      <DisciplineCarousel slides={disciplineCourses} />
+
+      {/* SEZIONE TECNICI */}
+      <Tecnici />
+
+      {/* SEZIONE PERCHE' SCEGLIERE*/}
+      <PercheScegliere />
+
+      {/* SEZIONE OLTRE IL RING */}
+      <section className="oltre-ring">
+        <div className="oltre-inner">
+
+          {/* Colonna Sinistra */}
+          <div className="oltre-left fade-in">
+            <div className="oltre-eyebrow">La palestra</div>
+            <h2 className="oltre-titolo">
+              Oltre<br />al <span>Ring</span>
+            </h2>
+            <p className="oltre-desc">
+              Un percorso completo che va oltre il combattimento. Forza, disciplina e salute — tutto sotto lo stesso tetto.
+            </p>
+            <Link href="/corsi" className="oltre-cta">
+              Scopri i corsi <i className="fa-solid fa-arrow-right" aria-hidden="true" />
+            </Link>
+          </div>
+
+          {/* Colonna Destra */}
+          <div className="oltre-right">
+
+            <div className="oltre-item fade-in">
+              <div className="oltre-num">01</div>
+              <div className="oltre-content">
+                <div className="oltre-item-header">
+                  <div className="oltre-icon" aria-hidden="true">
+                    <i className="fa-solid fa-dumbbell" />
+                  </div>
+                  <div className="oltre-item-title">Sala Pesi</div>
+                </div>
+                <p className="oltre-item-text">
+                  Attrezzatura professionale per lavorare su forza, resistenza e massa muscolare. Complementare agli allenamenti tecnici, essenziale per chi vuole risultati veri.
+                </p>
+                <span className="oltre-tag">✦ Attrezzatura professionale</span>
+              </div>
+            </div>
+
+            <div className="oltre-item fade-in">
+              <div className="oltre-num">02</div>
+              <div className="oltre-content">
+                <div className="oltre-item-header">
+                  <div className="oltre-icon" aria-hidden="true">
+                    <i className="fa-solid fa-brain" />
+                  </div>
+                  <div className="oltre-item-title">Mentalità d&apos;acciaio</div>
+                </div>
+                <p className="oltre-item-text">
+                  Qui si viene per superare i propri limiti. Allenerai la concentrazione, la resistenza mentale e la fiducia in te stesso — dentro e fuori dal ring.
+                </p>
+                <span className="oltre-tag">✦ Coaching individuale</span>
+              </div>
+            </div>
+
+            <div className="oltre-item fade-in">
+              <div className="oltre-num">03</div>
+              <div className="oltre-content">
+                <div className="oltre-item-header">
+                  <div className="oltre-icon" aria-hidden="true">
+                    <i className="fa-solid fa-heart-pulse" />
+                  </div>
+                  <div className="oltre-item-title">Trasformazione fisica</div>
+                </div>
+                <p className="oltre-item-text">
+                  Cardio ad alta intensità, coordinazione e condizionamento atletico. Un percorso progettato per cambiare il tuo corpo e ottimizzare le tue performance.
+                </p>
+                <span className="oltre-tag">✦ Tutti i livelli</span>
+              </div>
+            </div>
+
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+    </>
   );
 }
