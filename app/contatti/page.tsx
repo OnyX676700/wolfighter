@@ -53,7 +53,7 @@ export default function ContattiPage() {
       <section className="contatti-hero">
         <div className="contatti-hero-overlay" aria-hidden="true" />
         <div className="contatti-hero-content">
-          <h1 className="contatti-hero-title">Contatti e orari</h1>
+          <h1 className="contatti-hero-title">CONTATTI E ORARI</h1>
         </div>
       </section>
 

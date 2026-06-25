@@ -78,7 +78,7 @@ export default function CorsiPage() {
             <i className="fa-solid fa-dumbbell" aria-hidden="true" />
             <span>Wolfighter Boxing — Trapani</span>
           </div>
-          <h1 className="corsi-hero-title">I nostri corsi</h1>
+          <h1 className="corsi-hero-title">I nostri<br /> corsi</h1>
           <p className="corsi-hero-text">
             Programmi di allenamento pensati per ogni livello. Che tu sia un principiante
             o un atleta esperto, troverai il percorso giusto per te.

@@ -6,24 +6,24 @@ import PercheScegliere from '@/components/Perchescegliere';
 const disciplineCourses = [
   {
     title: 'Muay Thai',
-    tagline: '✦ L\'arte delle otto membra. Tradizione, colpi devastanti e disciplina spirituale.',
+    tagline: '✦ Impara l’arte del combattimento thailandese, famosa per la sua efficacia e completezza, affinando tecniche di pugni, gomiti, ginocchia e calci.',
     image: '/img/wetransfer_foto-evento_2026-03-30_0714/muay-thai.png',
     backgroundPosition: 'center 20%',
   },
   {
     title: 'Kickboxing',
-    tagline: '✦ Ritmo, esplosività e coordinazione. Un mix letale di pugni e calci.',
+    tagline: '✦  Sviluppa la tua potenza e precisione con la kick boxing, un mix esplosivo di pugni, calci e tecniche di ginocchio.',
     image: '/img/wetransfer_foto-evento_2026-03-30_0714/kickboxing.png',
   },
   {
     title: 'Pugilato',
-    tagline: '✦ La Noble Art. Precisione millimetrica, gioco di gambe e pura strategia sul ring.',
+    tagline: '✦ Affina la tua tecnica e la tua resistenza con il “noble art”, migliorando la tua velocità, la tua coordinazione e la tua capacità di difesa.',
     image: '/img/boxe.png',
     backgroundPosition: 'center 20%',
   },
   {
     title: 'MMA',
-    tagline: '✦ Combattimento a 360°. L\'evoluzione finale dello striking e della lotta a terra.',
+    tagline: '✦  É uno sport da combattimento a contatto pieno che combina tecniche di diverse arti marziali e discipline da ring, rendendolo uno dei sistemi più completi e spettacolari al mondo.',
     image: '/img/wetransfer_foto-evento_2026-03-30_0714/mma.png',
   },
 ];
