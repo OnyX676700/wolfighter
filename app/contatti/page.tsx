@@ -30,6 +30,12 @@ const orariFunc = [
 
 type FormData = { nome: string; cognome: string; email: string; messaggio: string };
 
+// URL embed Google Maps con ricerca per indirizzo:
+// Il formato ?q=...&output=embed forza Google Maps a mostrare
+// il pin rosso sull'indirizzo cercato, senza bisogno di API key.
+const MAPPA_URL =
+  'https://maps.google.com/maps?q=Via+Libica+2,+91100+Trapani+TP,+Italia&output=embed&z=17&hl=it';
+
 export default function ContattiPage() {
   const [form, setForm] = useState<FormData>({ nome: '', cognome: '', email: '', messaggio: '' });
   const [inviato, setInviato] = useState(false);
@@ -40,7 +46,6 @@ export default function ContattiPage() {
 
   const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
-    // Qui puoi collegare un servizio email (es. EmailJS, Resend, ecc.)
     setInviato(true);
   };
 
@@ -129,27 +134,49 @@ export default function ContattiPage() {
 
       {/* ── MAPPA ── */}
       <section className="contatti-mappa">
+        <p className="contatti-mappa-eyebrow">Dove siamo</p>
         <p className="contatti-mappa-testo">
           Chiedi maggiori informazioni o prenota ora il tuo primo allenamento.
         </p>
-        <p className="contatti-mappa-indirizzo">Ci trovi a Trapani, Via Libica 2</p>
+        <p className="contatti-mappa-indirizzo">Via Libica 2, Trapani</p>
+
+        {/*
+          Il wrapper posizionato permette di sovrapporre un link cliccabile
+          sopra l'iframe per aprire Google Maps nell'app nativa su mobile.
+        */}
         <div className="contatti-mappa-embed">
           <iframe
-            title="Wolfighter Boxing Trapani"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0!2d12.5347!3d38.0176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1319fbbf6e2b6a37%3A0x1!2sASD+Wolfighter+Boxing+Trapani%2C+Via+Libica%2C+91100+Trapani+TP!5e0!3m2!1sit!2sit!4v1700000000000"
+            title="Wolfighter Boxing — Via Libica 2, Trapani"
+            src={MAPPA_URL}
             width="100%"
-            height="400"
+            height="420"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
+          {/*
+            Pulsante "Apri in Maps" — visibile su mobile dove l'iframe
+            può essere difficile da interagire.
+          */}
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=Via+Libica+2,+91100+Trapani+TP,+Italia"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contatti-mappa-directions-btn"
+            aria-label="Apri in Google Maps per le indicazioni stradali"
+          >
+            <i className="fa-solid fa-location-arrow" />
+            Indicazioni stradali
+          </a>
         </div>
       </section>
 
       {/* ── ORARI MUAY THAI / PUGILATO ── */}
       <section className="contatti-orari">
-        <h2 className="contatti-orari-titolo">Orari muay thai – pugilato</h2>
+        <h2 className="contatti-orari-titolo">
+          Orari <span>muay thai</span> – <span>pugilato</span>
+        </h2>
         <div className="contatti-table-wrapper">
           <table className="contatti-table">
             <thead>
@@ -177,7 +204,9 @@ export default function ContattiPage() {
 
       {/* ── ORARI FUNZIONALE ── */}
       <section className="contatti-orari">
-        <h2 className="contatti-orari-titolo">Orari funzionale</h2>
+        <h2 className="contatti-orari-titolo">
+          Orari <span>funzionale</span>
+        </h2>
         <div className="contatti-table-wrapper">
           <table className="contatti-table">
             <thead>
@@ -211,7 +240,6 @@ export default function ContattiPage() {
           <li><strong>Sabato</strong>: dalle 10:00 alle 12:00</li>
         </ul>
         <div className="contatti-bb-footer">
-          <span>Orari 2025-2026</span>
           <Link href="/contatti" className="contatti-bb-btn">Contattaci</Link>
         </div>
       </section>

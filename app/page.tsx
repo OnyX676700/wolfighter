@@ -3,6 +3,12 @@ import DisciplineCarousel from '@/components/DisciplineCarousel';
 import Tecnici from '@/components/Tecnici';
 import PercheScegliere from '@/components/Perchescegliere';
 
+export const metadata = {
+  title: 'Wolfighter Boxing Trapani | Palestra di Pugilato e Arti Marziali',
+  description: 'La palestra Wolfighter Boxing a Trapani (Via Libica) offre corsi di Muay Thai, Kick Boxing, K1 e Pugilato. Allenati con tecnici certificati.',
+  keywords: ['wolfighter trapani', 'palestra pugilato trapani', 'kick boxing trapani', 'muay thai trapani'],
+};
+
 const disciplineCourses = [
   {
     title: 'Muay Thai',

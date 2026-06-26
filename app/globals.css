@@ -20,7 +20,6 @@ body {
     font-family: var(--font-dm-sans), sans-serif;
 }
 
-/* Applichiamo il font Syne dove richiesto */
 .hero-title,
 .discipline-boxe h2,
 .oltre-titolo,
@@ -52,7 +51,6 @@ header {
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     min-height: var(--header-height);
-    /* Transizione più lenta e fluida per evitare il "ballonzolamento" */
     transition: min-height 0.5s ease,
                 padding 0.5s ease,
                 background 0.4s ease,
@@ -173,6 +171,17 @@ nav a:last-child.active {
 @media (max-width: 768px) {
     header {
         padding: 0 24px;
+        /* FIX: riduce altezza header su mobile */
+        min-height: 80px;
+        --header-height: 80px;
+    }
+
+    header.scrolled {
+        min-height: 60px;
+    }
+
+    .header-logo img {
+        height: 44px;
     }
 
     .hamburger {
@@ -299,7 +308,8 @@ nav a:last-child.active {
 
 .hero-title {
     font-weight: 800;
-    font-size: 40px;
+    /* FIX: usa clamp per scala fluida invece di breakpoint rigidi */
+    font-size: clamp(24px, 4vw, 40px);
     line-height: 1.05;
     text-transform: uppercase;
     color: var(--cream);
@@ -354,6 +364,15 @@ nav a:last-child.active {
     filter: brightness(0.65) saturate(0.9);
 }
 
+/* Tablet landscape */
+@media (max-width: 1024px) {
+    .hero-content {
+        flex: 0 0 45%;
+        padding: 0 40px;
+    }
+}
+
+/* Tablet portrait + mobile */
 @media (max-width: 900px) {
     .hero {
         flex-direction: column;
@@ -377,18 +396,17 @@ nav a:last-child.active {
     }
 
     .hero-title {
-        font-size: 34px;
         padding-top: 0;
     }
 }
 
 @media (max-width: 480px) {
-    .hero-title {
-        font-size: 28px;
+    .hero-content {
+        padding: 36px 20px;
     }
 
-    .hero-content {
-        padding: 40px 24px;
+    .hero-text {
+        font-size: 15px;
     }
 }
 
@@ -428,32 +446,33 @@ nav a:last-child.active {
     transform: translateY(-3px);
 }
 
+@media (max-width: 480px) {
+    .torna-su {
+        bottom: 16px;
+        right: 16px;
+        width: 42px;
+        height: 42px;
+    }
+}
+
 /* ============================================================
    DISCIPLINE BOXE (Carousel)
 ============================================================ */
 .discipline-boxe {
     background-color: #121212;
-    padding: 30px 60px;
+    /* FIX: padding responsive con clamp */
+    padding: 40px clamp(16px, 4vw, 60px);
 }
 
 .discipline-boxe h2 {
-    font-size: 55px;
+    /* FIX: scala fluida del titolo */
+    font-size: clamp(28px, 5vw, 55px);
     font-weight: 800;
     color: var(--cream);
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 45px;
     text-align: center;
-}
-
-@media (max-width: 768px) {
-    .discipline-boxe h2 {
-        font-size: 32px;
-    }
-
-    .discipline-boxe {
-        padding: 30px 20px;
-    }
 }
 
 .disc-carousel-wrapper {
@@ -463,6 +482,13 @@ nav a:last-child.active {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 70px;
+}
+
+/* FIX: pulsanti carousel più vicini su schermi piccoli */
+@media (max-width: 600px) {
+    .disc-carousel-wrapper {
+        padding: 0 44px;
+    }
 }
 
 .carousel-btn {
@@ -497,9 +523,12 @@ nav a:last-child.active {
 .carousel-btn.prev { left: 0; }
 .carousel-btn.next { right: 0; }
 
-@media (max-width: 1280px) {
-    .carousel-btn.prev { left: 10px; }
-    .carousel-btn.next { right: 10px; }
+@media (max-width: 600px) {
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+    }
 }
 
 .disc-track-container {
@@ -516,7 +545,8 @@ nav a:last-child.active {
 
 .disc-slide {
     min-width: 100%;
-    height: 500px;
+    /* FIX: altezza fluida invece di fissa */
+    height: clamp(260px, 50vw, 500px);
     background-size: cover;
     background-position: center;
     position: relative;
@@ -531,15 +561,17 @@ nav a:last-child.active {
 
 .disc-content {
     position: absolute;
-    bottom: 50px;
-    left: 50px;
-    right: 50px;
+    /* FIX: posizione e padding fluidi */
+    bottom: clamp(20px, 5%, 50px);
+    left: clamp(20px, 5%, 50px);
+    right: clamp(20px, 5%, 50px);
     z-index: 2;
     color: var(--cream);
 }
 
 .disc-content h3 {
-    font-size: 42px;
+    /* FIX: titolo fluido */
+    font-size: clamp(22px, 4vw, 42px);
     font-weight: 800;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
     text-transform: uppercase;
@@ -549,7 +581,8 @@ nav a:last-child.active {
 
 .disc-content .carousel-tag {
     font-family: var(--font-dm-sans), sans-serif;
-    font-size: 18px;
+    /* FIX: testo fluido */
+    font-size: clamp(14px, 2vw, 18px);
     font-weight: 400;
     opacity: 0.9;
     line-height: 1.4;
@@ -576,11 +609,12 @@ nav a:last-child.active {
 }
 
 /* ============================================================
-   OLTRE IL RING — layout editoriale due colonne
+   OLTRE IL RING
 ============================================================ */
 .oltre-ring {
     background-color: var(--bordeux);
-    padding: 100px 40px;
+    /* FIX: padding con clamp */
+    padding: clamp(50px, 8vw, 100px) clamp(20px, 4vw, 40px);
     width: 100%;
     box-sizing: border-box;
 }
@@ -620,7 +654,8 @@ nav a:last-child.active {
 }
 
 .oltre-titolo {
-    font-size: 48px;
+    /* FIX: titolo fluido */
+    font-size: clamp(28px, 4vw, 48px);
     font-weight: 800;
     color: var(--cream);
     text-transform: uppercase;
@@ -712,7 +747,8 @@ nav a:last-child.active {
 }
 
 .oltre-item-title {
-    font-size: 22px;
+    /* FIX: titolo fluido */
+    font-size: clamp(16px, 2.5vw, 22px);
     font-weight: 800;
     color: var(--cream);
     text-transform: uppercase;
@@ -744,13 +780,24 @@ nav a:last-child.active {
     border-radius: 3px;
 }
 
+/* Tablet */
+@media (max-width: 1024px) {
+    .oltre-inner {
+        gap: 50px;
+    }
+}
+
 @media (max-width: 900px) {
-    .oltre-ring { padding: 70px 24px; }
-    .oltre-inner { grid-template-columns: 1fr; gap: 50px; }
+    .oltre-inner { grid-template-columns: 1fr; gap: 40px; }
     .oltre-left { position: static; }
-    .oltre-titolo { font-size: 36px; }
     .oltre-desc { max-width: 100%; }
     .oltre-item { grid-template-columns: 40px 1fr; gap: 16px; padding: 28px 0; }
+}
+
+@media (max-width: 480px) {
+    .oltre-item { grid-template-columns: 32px 1fr; gap: 12px; padding: 22px 0; }
+    .oltre-item-text { font-size: 14px; }
+    .oltre-num { font-size: 12px; }
 }
 
 /* ============================================================
@@ -758,19 +805,20 @@ nav a:last-child.active {
 ============================================================ */
 .tecnici-section {
     background-color: #121212;
-    padding: 80px 0;
+    padding: clamp(50px, 7vw, 80px) 0;
 }
 
 .tecnici-title {
     font-family: 'Syne', sans-serif;
-    font-size: 42px;
+    /* FIX: titolo fluido */
+    font-size: clamp(24px, 4vw, 42px);
     font-weight: 800;
     color: var(--cream);
     text-transform: uppercase;
     text-align: center;
     letter-spacing: 2px;
     margin-bottom: 50px;
-    padding: 0 40px;
+    padding: 0 clamp(16px, 4vw, 40px);
 }
 
 .tecnici-scroll-wrapper {
@@ -805,8 +853,11 @@ nav a:last-child.active {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    padding: 0 40px 20px;
+    /* FIX: padding adattivo */
+    padding: 0 clamp(16px, 4vw, 40px) 20px;
     scrollbar-width: none;
+    /* FIX: touch scrolling più fluido su iOS */
+    -ms-overflow-style: none;
 }
 
 .tecnici-track::-webkit-scrollbar {
@@ -814,7 +865,8 @@ nav a:last-child.active {
 }
 
 .tecnico-card {
-    flex: 0 0 300px;
+    /* FIX: larghezza minima adattiva */
+    flex: 0 0 clamp(240px, 70vw, 300px);
     scroll-snap-align: start;
     background: #1a1a1a;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -915,12 +967,6 @@ nav a:last-child.active {
     margin-top: 6px;
 }
 
-@media (max-width: 768px) {
-    .tecnici-section { padding: 60px 0; }
-    .tecnici-title { font-size: 28px; }
-    .tecnico-card { flex: 0 0 260px; }
-}
-
 /* ============================================================
    PERCHÉ SCEGLIERE
 ============================================================ */
@@ -939,7 +985,7 @@ nav a:last-child.active {
 .perche-blocco.foto-sinistra > * { direction: ltr; }
 
 .perche-testo {
-    padding: 80px 60px;
+    padding: clamp(40px, 6vw, 80px) clamp(24px, 5vw, 60px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -968,7 +1014,8 @@ nav a:last-child.active {
 
 .perche-titolo {
     font-family: 'Syne', sans-serif;
-    font-size: 32px;
+    /* FIX: titolo fluido */
+    font-size: clamp(22px, 3vw, 32px);
     font-weight: 800;
     color: var(--cream);
     text-transform: uppercase;
@@ -1024,7 +1071,7 @@ nav a:last-child.active {
 /* INFORMAZIONI */
 .info-block {
     background-color: #121212;
-    padding: 100px 40px;
+    padding: clamp(60px, 8vw, 100px) clamp(20px, 4vw, 40px);
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -1041,7 +1088,8 @@ nav a:last-child.active {
 
 .info-titolo {
     font-family: 'Syne', sans-serif;
-    font-size: 48px;
+    /* FIX: fluido */
+    font-size: clamp(28px, 4vw, 48px);
     font-weight: 800;
     color: var(--cream);
     text-transform: uppercase;
@@ -1065,29 +1113,36 @@ nav a:last-child.active {
     }
 
     .perche-foto-wrapper {
-        height: 300px;
+        height: 280px;
+        /* FIX: ordine corretto su mobile (foto sopra, testo sotto) */
+        order: -1;
     }
 
-    .perche-testo {
-        padding: 50px 24px;
+    .perche-lista li {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .perche-lista li {
+        font-size: 13px;
+        gap: 10px;
     }
 
-    .perche-titolo { font-size: 24px; }
-    .info-titolo { font-size: 32px; }
-    .info-block { padding: 70px 24px; }
+    .info-testo {
+        font-size: 15px;
+    }
 }
 
 /* ============================================================
-   PAGINA CORSI
+   PAGINA CORSI — HERO
 ============================================================ */
-
-/* HERO */
 .corsi-hero {
     position: relative;
     min-height: 55vh;
     background-image: url('/img/Manu/corso.jpg');
     background-size: cover;
-    background-position: center center; /* FIX: era "right center 10%" sintassi non valida */
+    background-position: center center;
     display: flex;
     align-items: center;
 }
@@ -1102,7 +1157,7 @@ nav a:last-child.active {
 .corsi-hero-content {
     position: relative;
     z-index: 1;
-    padding: 80px 60px;
+    padding: clamp(50px, 8vw, 80px) clamp(20px, 5vw, 60px);
     max-width: 620px;
 }
 
@@ -1121,13 +1176,14 @@ nav a:last-child.active {
 
 .corsi-hero-title {
     font-family: var(--font-syne), sans-serif;
-    font-size: 72px;
+    /* FIX: rimosso white-space nowrap, scala fluida */
+    font-size: clamp(36px, 7vw, 72px);
     font-weight: 800;
     text-transform: uppercase;
     color: var(--cream);
     line-height: 1;
     margin: 0 0 25px;
-    white-space: nowrap; /* impedisce wrap indesiderato su desktop */
+    white-space: normal;
 }
 
 .corsi-hero-text {
@@ -1165,13 +1221,13 @@ nav a:last-child.active {
 .corsi-intro {
     background: #121212;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 60px 40px;
+    padding: clamp(40px, 6vw, 60px) clamp(20px, 4vw, 40px);
     text-align: center;
 }
 
 .corsi-intro-text {
     font-family: 'DM Sans', sans-serif;
-    font-size: 18px;
+    font-size: clamp(15px, 2vw, 18px);
     color: rgba(244, 241, 234, 0.65);
     line-height: 1.8;
     max-width: 780px;
@@ -1185,7 +1241,7 @@ nav a:last-child.active {
 /* GRIGLIA */
 .corsi-grid-section {
     background: #121212;
-    padding: 60px 40px 100px;
+    padding: clamp(40px, 5vw, 60px) clamp(16px, 4vw, 40px) clamp(60px, 8vw, 100px);
 }
 
 .corsi-grid {
@@ -1194,6 +1250,15 @@ nav a:last-child.active {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 28px;
+}
+
+/* FIX: breakpoint griglia corsi */
+@media (max-width: 1024px) {
+    .corsi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .corsi-grid { grid-template-columns: 1fr; gap: 20px; }
 }
 
 /* CARD */
@@ -1314,7 +1379,7 @@ nav a:last-child.active {
 /* CTA FINALE */
 .corsi-cta-finale {
     background: var(--bordeux);
-    padding: 100px 40px;
+    padding: clamp(60px, 8vw, 100px) clamp(20px, 4vw, 40px);
     text-align: center;
 }
 
@@ -1335,7 +1400,8 @@ nav a:last-child.active {
 
 .corsi-cta-titolo {
     font-family: 'Syne', sans-serif;
-    font-size: 52px;
+    /* FIX: fluido */
+    font-size: clamp(28px, 5vw, 52px);
     font-weight: 800;
     color: var(--cream);
     text-transform: uppercase;
@@ -1373,35 +1439,8 @@ nav a:last-child.active {
     gap: 16px;
 }
 
-/* RESPONSIVE CORSI */
-@media (max-width: 1024px) {
-    .corsi-grid { grid-template-columns: repeat(2, 1fr); }
-    /* FIX: rimuove nowrap su schermi medi per evitare overflow */
-    .corsi-hero-title {
-        white-space: normal;
-        font-size: 56px;
-    }
-}
-
-@media (max-width: 768px) {
-    .corsi-hero-content { padding: 60px 24px; }
-    .corsi-hero-title {
-        white-space: normal;
-        font-size: 48px;
-    }
-    .corsi-grid-section { padding: 40px 20px 60px; }
-    .corsi-grid { grid-template-columns: 1fr; }
-    .corsi-cta-titolo { font-size: 36px; }
-    .corsi-cta-finale { padding: 70px 24px; }
-    .corsi-intro { padding: 40px 24px; }
-}
-
-@media (max-width: 480px) {
-    .corsi-hero-title { font-size: 38px; }
-}
-
 /* ============================================================
-   CONTATTI & ORARI — dark theme
+   CONTATTI & ORARI
 ============================================================ */
 
 /* HERO */
@@ -1456,10 +1495,10 @@ nav a:last-child.active {
     background: var(--red);
 }
 
-/* FIX: titolo contatti rosso con ombra nera e responsive */
 .contatti-hero-title {
     font-family: var(--font-syne), sans-serif;
-    font-size: 75px;
+    /* FIX: scala fluida */
+    font-size: clamp(36px, 8vw, 75px);
     font-weight: 800;
     color: var(--red);
     text-transform: none;
@@ -1469,17 +1508,9 @@ nav a:last-child.active {
     text-shadow: 3px 3px 0px #000, 6px 6px 0px rgba(0, 0, 0, 0.4);
 }
 
-@media (max-width: 768px) {
-    .contatti-hero-title { font-size: 48px; }
-}
-
-@media (max-width: 480px) {
-    .contatti-hero-title { font-size: 36px; }
-}
-
 /* INTRO */
 .contatti-intro {
-    padding: 60px 40px;
+    padding: clamp(40px, 6vw, 60px) clamp(20px, 4vw, 40px);
     text-align: center;
     background: #121212;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -1487,7 +1518,7 @@ nav a:last-child.active {
 
 .contatti-intro p {
     font-family: var(--font-dm-sans), sans-serif;
-    font-size: 18px;
+    font-size: clamp(15px, 2vw, 18px);
     line-height: 1.8;
     color: rgba(244, 241, 234, 0.6);
     margin: 0 auto;
@@ -1499,16 +1530,15 @@ nav a:last-child.active {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
     gap: 80px;
-    padding: 80px clamp(1.5rem, 8vw, 8rem);
+    padding: clamp(40px, 6vw, 80px) clamp(20px, 8vw, 8rem);
     background: #1a1a1a;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .contatti-main {
         grid-template-columns: 1fr;
         gap: 3rem;
-        padding: 50px 24px;
     }
 }
 
@@ -1600,7 +1630,7 @@ nav a:last-child.active {
     gap: 1rem;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .contatti-form-row { grid-template-columns: 1fr; }
 }
 
@@ -1630,6 +1660,8 @@ nav a:last-child.active {
     color: var(--cream);
     transition: border-color 0.2s, background 0.2s;
     resize: vertical;
+    /* FIX: previene zoom automatico su iOS (font-size deve essere >= 16px) */
+    font-size: 16px;
 }
 
 .contatti-form-group input::placeholder,
@@ -1658,6 +1690,14 @@ nav a:last-child.active {
     border-radius: 4px;
     cursor: pointer;
     transition: background 0.2s, transform 0.2s;
+    /* FIX: piena larghezza su mobile per usabilità */
+    width: 100%;
+}
+
+@media (min-width: 600px) {
+    .contatti-form-btn {
+        width: auto;
+    }
 }
 
 .contatti-form-btn:hover {
@@ -1688,7 +1728,7 @@ nav a:last-child.active {
 
 /* MAPPA */
 .contatti-mappa {
-    padding: 80px clamp(1.5rem, 8vw, 8rem);
+    padding: clamp(50px, 7vw, 80px) clamp(20px, 8vw, 8rem);
     background: #121212;
     text-align: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -1713,7 +1753,8 @@ nav a:last-child.active {
 
 .contatti-mappa-indirizzo {
     font-family: var(--font-syne), sans-serif;
-    font-size: 1.6rem;
+    /* FIX: fluido */
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
     font-weight: 800;
     color: var(--cream);
     text-transform: uppercase;
@@ -1730,17 +1771,17 @@ nav a:last-child.active {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
-/* FIX: assicura che l'iframe sia block per evitare spazio bianco sotto */
 .contatti-mappa-embed iframe {
     display: block;
     width: 100%;
-    height: 420px;
+    /* FIX: altezza adattiva */
+    height: clamp(260px, 50vw, 420px);
     border: 0;
 }
 
 /* ORARI */
 .contatti-orari {
-    padding: 80px clamp(1.5rem, 8vw, 8rem);
+    padding: clamp(50px, 7vw, 80px) clamp(20px, 8vw, 8rem);
     background: #1a1a1a;
 }
 
@@ -1750,7 +1791,7 @@ nav a:last-child.active {
 
 .contatti-orari-titolo {
     font-family: var(--font-syne), sans-serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
     font-weight: 800;
     color: var(--cream);
     text-align: center;
@@ -1767,13 +1808,16 @@ nav a:last-child.active {
     overflow-x: auto;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.08);
+    /* FIX: scroll fluido su iOS */
+    -webkit-overflow-scrolling: touch;
 }
 
 .contatti-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.88rem;
-    min-width: 560px;
+    /* FIX: ridotta da 560px per adattarsi meglio a mobile */
+    min-width: 400px;
 }
 
 .contatti-table thead tr {
@@ -1790,6 +1834,8 @@ nav a:last-child.active {
     color: var(--cream);
     padding: 1rem 1.25rem;
     text-align: center;
+    /* FIX: evita rottura su celle strette */
+    white-space: nowrap;
 }
 
 .contatti-table th:first-child {
@@ -1797,13 +1843,15 @@ nav a:last-child.active {
 }
 
 .contatti-table td {
-    padding: 0.7rem 1.25rem;
+    padding: 0.7rem 1rem;
     text-align: center;
     color: var(--red);
     font-family: var(--font-dm-sans), sans-serif;
     font-weight: 600;
     font-size: 0.82rem;
     letter-spacing: 0.5px;
+    /* FIX: previene overflow su celle */
+    white-space: nowrap;
 }
 
 .contatti-table td.ora {
@@ -1826,9 +1874,18 @@ nav a:last-child.active {
     background: rgba(200, 29, 37, 0.07);
 }
 
+/* FIX: tabella su mobile piccolo */
+@media (max-width: 480px) {
+    .contatti-table th,
+    .contatti-table td {
+        padding: 0.6rem 0.6rem;
+        font-size: 0.75rem;
+    }
+}
+
 /* BODY BUILDING */
 .contatti-bodybuilding {
-    padding: 80px clamp(1.5rem, 8vw, 8rem);
+    padding: clamp(50px, 7vw, 80px) clamp(20px, 8vw, 8rem);
     background: #121212;
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -1836,7 +1893,7 @@ nav a:last-child.active {
 
 .contatti-bodybuilding h2 {
     font-family: var(--font-syne), sans-serif;
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
     font-weight: 800;
     color: var(--cream);
     text-transform: uppercase;
@@ -1870,6 +1927,7 @@ nav a:last-child.active {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
@@ -1902,20 +1960,13 @@ nav a:last-child.active {
     transform: translateY(-1px);
 }
 
-@media (max-width: 768px) {
-    .contatti-intro { padding: 40px 24px; }
-    .contatti-mappa { padding: 50px 24px; }
-    .contatti-orari { padding: 50px 24px; }
-    .contatti-bodybuilding { padding: 50px 24px; }
-}
-
 /* ============================================================
    FOOTER
 ============================================================ */
 footer {
     background-color: #0d0d0d;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 60px 40px 30px;
+    padding: clamp(40px, 6vw, 60px) clamp(20px, 4vw, 40px) 30px;
     font-family: var(--font-dm-sans), sans-serif;
     color: #a1a1aa;
 }
@@ -1924,9 +1975,34 @@ footer {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    /* FIX: 3 colonne su desktop, 2 su tablet, 1 su mobile */
+    grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     align-items: start;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .footer-inner {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* FIX: brand occupa tutta la larghezza su tablet */
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .footer-brand {
+        grid-column: auto;
+    }
 }
 
 .footer-brand img {
@@ -2046,8 +2122,36 @@ footer {
     justify-content: center;
 }
 
-@media (max-width: 768px) {
-    .footer-inner { grid-template-columns: 1fr; gap: 36px; }
-    footer { padding: 50px 24px 24px; }
-    .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
+@media (max-width: 600px) {
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+}
+
+/* ============================================================
+   MAPPA — pulsante indicazioni stradali (aggiunto)
+============================================================ */
+.contatti-mappa-directions-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    font-family: var(--font-dm-sans), sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--cream);
+    text-decoration: none;
+    padding: 10px 20px;
+    background: var(--red);
+    border-radius: 4px;
+    transition: background 0.25s ease, gap 0.25s ease;
+}
+
+.contatti-mappa-directions-btn:hover {
+    background: #a01520;
+    gap: 12px;
 }
