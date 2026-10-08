@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { useStandalone } from '@/app/lib/useStandalone';
 
 interface Slide {
   title: string;
@@ -15,6 +16,9 @@ interface DisciplineCarouselProps {
 
 export default function DisciplineCarousel({ slides = [] }: DisciplineCarouselProps) {
   const [current, setCurrent] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const standalone = useStandalone();
+  const touchX = useRef<number | null>(null);
 
   const spostaDisc = useCallback(
     (direzione: number) => {
@@ -26,11 +30,12 @@ export default function DisciplineCarousel({ slides = [] }: DisciplineCarouselPr
 
   useEffect(() => {
     if (slides.length <= 1) return;
+    if (isPaused || standalone) return;
     const timer = setInterval(() => {
       spostaDisc(1);
-    }, 5000);
+    }, 8000);
     return () => clearInterval(timer);
-  }, [spostaDisc, slides.length]);
+  }, [spostaDisc, slides.length, isPaused, standalone]);
 
   if (slides.length === 0) return null;
 
@@ -38,7 +43,18 @@ export default function DisciplineCarousel({ slides = [] }: DisciplineCarouselPr
     <section className="discipline-boxe">
       <h2 className="fade-in">LE NOSTRE DISCIPLINE</h2>
 
-      <div className="disc-carousel-wrapper">
+      <div
+        className="disc-carousel-wrapper"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
+        onTouchEnd={(e) => {
+          if (touchX.current === null) return;
+          const dx = e.changedTouches[0].clientX - touchX.current;
+          touchX.current = null;
+          if (Math.abs(dx) > 40) spostaDisc(dx < 0 ? 1 : -1);
+        }}
+      >
         <button
           className="carousel-btn prev"
           onClick={() => spostaDisc(-1)}

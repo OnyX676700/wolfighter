@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { useStandalone } from '@/app/lib/useStandalone';
 
 const menuLinks = [
   { name: 'Home', href: '/' },
@@ -13,6 +14,7 @@ const menuLinks = [
 
 export default function Header() {
   const pathname = usePathname();
+  const standalone = useStandalone();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -22,7 +24,7 @@ export default function Header() {
       setIsScrolled(window.scrollY > 60);
       setShowScrollTop(window.scrollY > 300);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -56,7 +58,7 @@ export default function Header() {
         className={`torna-su ${showScrollTop ? 'visibile' : ''}`}
         id="tornaSu"
         aria-label="Torna su"
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={() => window.scrollTo({ top: 0, behavior: standalone ? 'auto' : 'smooth' })}
       >
         <i className="fa-solid fa-angle-up" aria-hidden="true" />
       </button>
@@ -69,7 +71,7 @@ export default function Header() {
               alt="Wolfighter Boxing"
               width={180}
               height={60}
-              style={{ width: "auto", height: 60 }}
+              style={{ width: "auto", height: "auto" }}
               priority
             />
           </Link>

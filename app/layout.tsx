@@ -3,22 +3,19 @@ import { Syne, DM_Sans } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import NoZoom from './no-zoom';
+import type { Metadata, Viewport } from 'next';
 
-const syne = Syne({
-  subsets: ['latin'],
-  weight: ['400', '700', '800'],
-  variable: '--font-syne',
-  display: 'swap',
-});
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: 'cover',
+  themeColor: '#000000',
+};
 
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '700'],
-  variable: '--font-dm-sans',
-  display: 'swap',
-});
-
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Wolfighter Boxing Trapani | Palestra di Boxe, Kickboxing e Muay Thai',
   description: 'Wolfighter Boxing è la palestra di boxe, kickboxing e Muay Thai a Trapani. Allenamenti per tutti i livelli: scopri i corsi e libera il lupo che è in te.',
   openGraph: {
@@ -36,17 +33,35 @@ export const metadata = {
     description: 'Libera il lupo che è in te. Boxe, kickboxing e Muay Thai a Trapani.',
     images: ['https://www.wolfighterboxing.it/img/og-cover.jpg'],
   },
-  themeColor: '#1c1c1c',
   authors: [{ name: 'Wolfighter Boxing' }],
   robots: 'index, follow',
+  appleWebApp: {
+    capable: true,
+    title: 'Wolfighter',
+    statusBarStyle: 'black-translucent',
+  },
+  formatDetection: { telephone: false },
 };
+
+const syne = Syne({
+  subsets: ['latin'],
+  weight: ['400', '700', '800'],
+  variable: '--font-syne',
+  display: 'swap',
+});
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
+  variable: '--font-dm-sans',
+  display: 'swap',
+});
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="it" className={`${syne.variable} ${dmSans.variable}`}>
       <head>
         <link rel="icon" href="/img/Logo2.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/img/Logo2.png" />
         <link rel="canonical" href="https://www.wolfighterboxing.it/" />
         <link
           rel="stylesheet"
@@ -58,6 +73,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body>
+        <NoZoom />
         <Header />
         <main>{children}</main>
         <Footer />
